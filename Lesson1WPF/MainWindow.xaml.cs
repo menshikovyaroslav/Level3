@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Data;
 
 namespace Lesson1WPF
 {
@@ -30,7 +31,8 @@ namespace Lesson1WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            DBclass db = new DBclass();
+            dgEmails.ItemsSource = db.Messages;
         }
 
         private void SendButton_Click(object sender, RoutedEventArgs e)

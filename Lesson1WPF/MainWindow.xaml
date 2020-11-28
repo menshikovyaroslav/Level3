@@ -102,11 +102,11 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid DockPanel.Dock="Bottom" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False">
+                    <DataGrid Name="dgEmails" DockPanel.Dock="Bottom" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="30"></DataGridTextColumn>
                             <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="Auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Address}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Value}" Width="*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
@@ -121,8 +121,18 @@
                         <StackPanel Orientation="Vertical" Width="180">
                             <Calendar>
                             </Calendar>
-                            <Button Name="SendButton" Content="Отправить" Margin="2" Click="SendButton_Click"></Button>
-                            <Button Content="Запланировать" Margin="2"></Button>
+                            <Button Name="SendButton" Margin="2" Click="SendButton_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="Отправить" Margin="10,0"></TextBlock>
+                                    <fa5:SvgAwesome Icon="Brands_FacebookMessenger" Foreground="#FFFB3307" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" />
+                                </StackPanel>
+                            </Button>
+                            <Button Margin="2">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center" Text="Запланировать" Margin="10,0"></TextBlock>
+                                    <fa5:SvgAwesome Icon="Regular_Clock" Foreground="#FF3E07FB" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" />
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Управление" Grid.Column="1">
