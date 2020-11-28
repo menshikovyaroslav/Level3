@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Support;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1
+namespace Lesson1WPF
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -32,14 +33,11 @@ namespace WpfApp1
 
         }
 
-        private void SendBtn_Click(object sender, RoutedEventArgs e)
+        private void SendButton_Click(object sender, RoutedEventArgs e)
         {
-            var login = LoginTb.Text;
-            var password = PasswordTb.Password;
-            var address = AddressTb.Text;
-
-            Mail.SendMail(login, password, address);
-
+            var mail = new Mail();
+            //
+          //  mail.SendMail();
         }
     }
 }
