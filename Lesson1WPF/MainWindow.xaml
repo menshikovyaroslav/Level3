@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lesson1WPF"
         xmlns:data="clr-namespace:Lesson1WPF.Data"
-        xmlns:fa5="http://schemas.fontawesome.com/icons/"
+        xmlns:fa5="http://schemas.fontawesome.com/icons/" WindowState="Maximized"
         mc:Ignorable="d" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow"
         Title="Lesson 1" Height="450">
 
@@ -34,14 +34,15 @@
             <TabItem Header="Формирование группы рассылки">
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top">
-                        <ToolBar Header="Сервера" Width="300" Band="0" BandIndex="1">
+                        <ToolBar Width="270" Band="0" BandIndex="1">
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel.Resources>
                                     <Style TargetType="Button">
                                         <Setter Property="Height" Value="20"></Setter>
                                     </Style>
                                 </StackPanel.Resources>
-                                <ComboBox SelectedIndex="0" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{x:Static data:TestData.Servers}" DisplayMemberPath="FullAddress">
+                                <TextBlock Text="Сервера" VerticalAlignment="Center"></TextBlock>
+                                <ComboBox Margin="4,0" Height="20" SelectedIndex="0" VerticalContentAlignment="Center" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{x:Static data:TestData.Servers}" DisplayMemberPath="FullAddress">
                                 </ComboBox>
                                 <Button>
                                     <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -55,14 +56,15 @@
                             </StackPanel>
 
                         </ToolBar>
-                        <ToolBar Header="Отправители" Width="300" Band="1" >
+                        <ToolBar Width="270" Band="1" >
                             <StackPanel Orientation="Horizontal">
                                 <StackPanel.Resources>
                                     <Style TargetType="Button">
                                         <Setter Property="Height" Value="20"></Setter>
                                     </Style>
                                 </StackPanel.Resources>
-                                <ComboBox SelectedIndex="0" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{x:Static data:TestData.Senders}" DisplayMemberPath="Name">
+                                <TextBlock VerticalAlignment="Center" Text="Отправители"></TextBlock>
+                                <ComboBox Margin="4,0" Height="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{x:Static data:TestData.Senders}" DisplayMemberPath="Name">
                                 </ComboBox>
                                 <Button>
                                     <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -75,8 +77,30 @@
                                 </Button>
                             </StackPanel>
                         </ToolBar>
-                        <ToolBar Header="Получатели" Width="200" Band="1"></ToolBar>
-                        <ToolBar Header="планировщик" Width="200" BandIndex="1"></ToolBar>
+                        <ToolBar Header="Получатели" Width="160" Band="1" Height="30">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel.Resources>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Height" Value="20"></Setter>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <Button>
+                                    <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </Button>
+                                <Button>
+                                    <fa5:SvgAwesome Icon="Solid_Edit" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Button>
+                                <Button>
+                                    <fa5:SvgAwesome Icon="Solid_Trash" Foreground="#FFFB3307" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Button>
+                            </StackPanel>
+                        </ToolBar>
+                        <ToolBar Width="200" Height="30" BandIndex="1">
+                            <TextBlock Text="Перейти в Планировщик" VerticalAlignment="Center"></TextBlock>
+                            <Button Height="30" Margin="6,0">
+                                <fa5:SvgAwesome Icon="Solid_Clock" Foreground="#FF7CC186" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" />
+                            </Button>
+                        </ToolBar>
                     </ToolBarTray>
                     <DataGrid DockPanel.Dock="Bottom" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False">
                         <DataGrid.Columns>
