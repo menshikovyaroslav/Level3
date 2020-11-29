@@ -31,7 +31,12 @@ namespace Lesson1WPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DBclass db = new DBclass();
+            // mssql
+            // DBclass db = new DBclass();
+            // dgEmails.ItemsSource = db.Messages;
+
+            // postgres
+            PgDb db = new PgDb();
             dgEmails.ItemsSource = db.Messages;
         }
 
