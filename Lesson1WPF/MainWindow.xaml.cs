@@ -28,23 +28,5 @@ namespace Lesson1WPF
         {
             InitializeComponent();
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            // mssql
-            // DBclass db = new DBclass();
-            // dgEmails.ItemsSource = db.Messages;
-
-            // postgres
-            PgDb db = new PgDb();
-            dgEmails.ItemsSource = db.Messages;
-        }
-
-        private void SendButton_Click(object sender, RoutedEventArgs e)
-        {
-            var mail = new Mail();
-            //
-          //  mail.SendMail();
-        }
     }
 }

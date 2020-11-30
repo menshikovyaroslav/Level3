@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lesson1WPF"
         xmlns:data="clr-namespace:Lesson1WPF.Data"
+        xmlns:vm="clr-namespace:WpfApp1.ViewModels"
         xmlns:fa5="http://schemas.fontawesome.com/icons/" WindowState="Maximized"
-        mc:Ignorable="d" Loaded="Window_Loaded" WindowStyle="SingleBorderWindow"
+        mc:Ignorable="d" WindowStyle="SingleBorderWindow" DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="Lesson 1" Height="450">
 
     <Window.Resources>
@@ -42,15 +43,15 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <TextBlock Text="Сервера" VerticalAlignment="Center"></TextBlock>
-                                <ComboBox Margin="4,0" Height="20" SelectedIndex="0" VerticalContentAlignment="Center" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{x:Static data:TestData.Servers}" DisplayMemberPath="FullAddress">
+                                <ComboBox Margin="4,0" Height="20" SelectedIndex="0" VerticalContentAlignment="Center" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{Binding Servers}" DisplayMemberPath="FullAddress" SelectedItem="{Binding SelectedServer}">
                                 </ComboBox>
-                                <Button>
+                                <Button Command="{Binding AddServerCommand}">
                                     <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Button>
-                                <Button>
+                                <Button Command="{Binding EditServerCommand}">
                                     <fa5:SvgAwesome Icon="Solid_Edit" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
-                                <Button>
+                                <Button Command="{Binding DelServerCommand}">
                                     <fa5:SvgAwesome Icon="Solid_Trash" Foreground="#FFFB3307" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
                             </StackPanel>
@@ -64,7 +65,7 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <TextBlock VerticalAlignment="Center" Text="Отправители"></TextBlock>
-                                <ComboBox Margin="4,0" Height="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{x:Static data:TestData.Senders}" DisplayMemberPath="Name">
+                                <ComboBox Margin="4,0" Height="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{Binding Senders}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedSender}">
                                 </ComboBox>
                                 <Button>
                                     <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -102,11 +103,11 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Name="dgEmails" DockPanel.Dock="Bottom" AutoGenerateColumns="False">
+                    <DataGrid Name="dgEmails" DockPanel.Dock="Bottom" AutoGenerateColumns="False" ItemsSource="{Binding Recipients}" SelectedItem="{Binding SelectedRecipient}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="30"></DataGridTextColumn>
                             <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="Auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Value}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Address}" Width="*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
@@ -121,7 +122,7 @@
                         <StackPanel Orientation="Vertical" Width="180">
                             <Calendar>
                             </Calendar>
-                            <Button Name="SendButton" Margin="2" Click="SendButton_Click">
+                            <Button Name="SendButton" Margin="2" Command="{Binding SendMessageCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock VerticalAlignment="Center" Text="Отправить" Margin="10,0"></TextBlock>
                                     <fa5:SvgAwesome Icon="Brands_FacebookMessenger" Foreground="#FFFB3307" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" />
@@ -182,7 +183,7 @@
             <TabItem Header="Редактор писем">
                 <DockPanel>
                     <GroupBox DockPanel.Dock="Left" Header="Письма">
-                        <ListBox Name="MessageList" Width="200" ItemsSource="{x:Static data:TestData.Messages}" DisplayMemberPath="Subject">
+                        <ListBox Name="MessageList" Width="200" ItemsSource="{Binding Messages}" DisplayMemberPath="Subject" SelectedItem="{Binding SelectedMessage}">
                             
                         </ListBox>
                     </GroupBox>

@@ -43,7 +43,7 @@ namespace Lesson1WPF.Data
         {
             get
             {
-                return Enumerable.Range(0, 10).Select(i => new Message() { Id=i, Name=$"name{i}", Value=$"value{i}"}).ToList();
+                return Enumerable.Range(0, 10).Select(i => new Message() { Subject=$"Subject{i}", Body=$"Body{i}"}).ToList();
             }
         }
     }

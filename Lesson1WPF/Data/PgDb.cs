@@ -23,43 +23,5 @@ namespace WpfApp1.Data
             _sqlGetMessagesCommand.Parameters.Add(new NpgsqlParameter("id", DbType.Int32));
             _sqlGetMessagesCommand.Parameters.Add(new NpgsqlParameter("value", DbType.String));
         }
-        public List<Message> Messages
-        {
-            get
-            {
-                var result = new List<Message>();
-
-                _sqlGetMessagesCommand.Connection = _workConnection;
-                _sqlGetMessagesCommand.Parameters["id"].Value = 1000;
-                _sqlGetMessagesCommand.Parameters["value"].Value = "testString";
-
-                _workConnection.Open();
-                var npgSqlDataReader = _sqlGetMessagesCommand.ExecuteReader();
-
-                if (npgSqlDataReader.HasRows)
-                {
-                    foreach (DbDataRecord dbDataRecord in npgSqlDataReader)
-                    {
-                        try
-                        {
-                            var messageId = dbDataRecord.GetInt32(0);
-                            var messageName = dbDataRecord.GetString(1);
-                            var messageValue = dbDataRecord.GetString(2);
-
-                            var message = new Message() {Id = messageId, Name = messageName, Value = messageValue };
-                            result.Add(message);
-                        }
-                        catch (Exception exception)
-                        {
-                        }
-
-                    }
-                }
-                npgSqlDataReader.Close();
-
-
-                return result;
-            }
-        }
     }
 }
