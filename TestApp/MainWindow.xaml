@@ -1,0 +1,44 @@
+﻿<Window x:Class="TestApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestApp"
+        xmlns:vm="clr-namespace:TestApp.ViewModels"
+        mc:Ignorable="d" SizeToContent="WidthAndHeight"
+        Title="{Binding Title}">
+    <Window.DataContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </Window.DataContext>
+    
+    <StackPanel Margin="60" Orientation="Vertical">
+        <Menu>
+            <MenuItem Header="Close" Command="{Binding CloseProgramCommand}"></MenuItem>
+        </Menu>
+        <StackPanel Orientation="Horizontal">
+            <Slider Width="200" Minimum="-400" Maximum="400" Value="{Binding ElementName=Translator, Path=X}" />
+            <Slider Width="200" Minimum="-180" Maximum="180" Value="{Binding ElementName=Rotator, Path=Angle}" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="200" Height="20" Text="{Binding ElementName=Translator, Path=X}"></TextBox>
+            <TextBox Width="200" Height="20" Text="{Binding ElementName=Rotator, Path=Angle}"></TextBox>
+        </StackPanel>
+        <Ellipse Width="160" Height="90" Margin="40" Fill="#FF62D88D" Stroke="#FF8671CB" StrokeThickness="6" RenderTransformOrigin="0.5, 0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="0" x:Name="Rotator"></RotateTransform>
+                    <TranslateTransform X="0" x:Name="Translator"></TranslateTransform>
+                </TransformGroup>
+
+            </Ellipse.RenderTransform>
+        </Ellipse>
+        <StackPanel Orientation="Horizontal">
+            <TextBox Width="200" Height="20" Text="{Binding CurrentTime, Mode=OneWay, ConverterCulture=ru, StringFormat=hh:mm:ss:ffff}"></TextBox>
+            <TextBox Width="200" Height="20" Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Margin="0,10">
+            <Button Content="Close" Command="{Binding CloseProgramCommand}" Margin="0,5"></Button>
+            <Button Content="Dialog" Command="{Binding DialogCommand}" CommandParameter="{Binding Title}"></Button>
+        </StackPanel>
+    </StackPanel>
+</Window>
