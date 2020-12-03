@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp1.Models.Base;
 
 namespace Lesson1WPF.Models
 {
-    public class Recipient
+    public class Recipient : Person
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
     }
 }

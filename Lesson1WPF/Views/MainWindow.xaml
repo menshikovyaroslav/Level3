@@ -104,7 +104,11 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <views:RecipientsControl />
+                    <DockPanel>
+                        <views:RecipientsEditor DockPanel.Dock="Right"/>
+                        <views:RecipientsControl DockPanel.Dock="Left" />
+                    </DockPanel>
+
                 </DockPanel>
             </TabItem>
             <TabItem Header="Планировщик">

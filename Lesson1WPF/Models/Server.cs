@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WpfApp1.Models.Base;
 
 namespace Lesson1WPF.Models
 {
-    public class Server
+    public class Server : Entity
     {
         public string Login { get; set; }
         public string Password { get; set; }

@@ -222,6 +222,7 @@
     </Compile>
     <Compile Include="Data\PasswordClass.cs" />
     <Compile Include="Data\TestData.cs" />
+    <Compile Include="Models\Base\Entity.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\Sender.cs" />
@@ -236,6 +237,9 @@
     <Compile Include="Views\RecipientsControl.xaml.cs">
       <DependentUpon>RecipientsControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RecipientsEditor.xaml.cs">
+      <DependentUpon>RecipientsEditor.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -249,6 +253,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\RecipientsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RecipientsEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
