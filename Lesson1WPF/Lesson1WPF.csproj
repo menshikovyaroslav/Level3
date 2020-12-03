@@ -212,6 +212,8 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Data\DBclass.cs" />
     <Compile Include="Data\PgDb.cs" />
+    <Compile Include="Data\ValidationRules\IntValidation.cs" />
+    <Compile Include="Data\ValidationRules\MailValidation.cs" />
     <Compile Include="EmailsDataContext.cs">
       <DependentUpon>EmailsDataContext.dbml</DependentUpon>
     </Compile>
