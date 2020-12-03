@@ -17,7 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Data;
 
-namespace Lesson1WPF
+namespace Lesson1WPF.Views
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
