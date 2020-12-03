@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Lesson1WPF"
         xmlns:data="clr-namespace:Lesson1WPF.Data"
         xmlns:vm="clr-namespace:WpfApp1.ViewModels"
+        xmlns:views="clr-namespace:WpfApp1.Views"
         xmlns:fa5="http://schemas.fontawesome.com/icons/" WindowState="Maximized"
         mc:Ignorable="d" WindowStyle="SingleBorderWindow" DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
         Title="Lesson 1" Height="450">
@@ -103,13 +104,7 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <DataGrid Name="dgEmails" DockPanel.Dock="Bottom" AutoGenerateColumns="False" ItemsSource="{Binding Recipients}" SelectedItem="{Binding SelectedRecipient}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="30"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Имя" Binding="{Binding Path=Name}" Width="Auto"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Адрес" Binding="{Binding Path=Address}" Width="*"></DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <views:RecipientsControl />
                 </DockPanel>
             </TabItem>
             <TabItem Header="Планировщик">
