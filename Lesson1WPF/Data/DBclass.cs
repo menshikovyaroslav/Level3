@@ -19,6 +19,32 @@ namespace WpfApp1.Data
                 return messages;
             }
         }
+        public IQueryable<Server> Servers
+        {
+            get
+            {
+                Table<Server> servers = emails.GetTable<Server>();
+                return servers;
+            }
+        }
+
+        public IQueryable<Sender> Senders
+        {
+            get
+            {
+                Table<Sender> senders = emails.GetTable<Sender>();
+                return senders;
+            }
+        }
+
+        public IQueryable<Recipient> Recipients
+        {
+            get
+            {
+                Table<Recipient> recipients = emails.GetTable<Recipient>();
+                return recipients;
+            }
+        }
 
     }
 }

@@ -10,6 +10,7 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using WpfApp1.Commands;
+using WpfApp1.Data;
 using WpfApp1.Services;
 
 namespace WpfApp1.ViewModels
@@ -90,6 +91,7 @@ namespace WpfApp1.ViewModels
         public MainViewModel(IMailService mailService)
         {
             _mailService = mailService;
+            var db = new DBclass();
 
             SendMessageCommand = new Command(SendMessageCommand_Execute, SendMessageCommand_CanExecute);
             DialogCommand = new RelayCommand<string>(DialogCommand_Execute, DialogCommand_CanExecute);
@@ -98,10 +100,10 @@ namespace WpfApp1.ViewModels
             EditServerCommand = new Command(EditServerCommand_Execute, EditServerCommand_CanExecute);
             DelServerCommand = new Command(DelServerCommand_Execute, DelServerCommand_CanExecute);
 
-            Servers = new ObservableCollection<Server>(TestData.Servers);
-            Senders = new ObservableCollection<Sender>(TestData.Senders);
-            Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
-            Messages = new ObservableCollection<Message>(TestData.Messages);
+            Servers = new ObservableCollection<Server>(db.Servers);
+            Senders = new ObservableCollection<Sender>(db.Senders);
+            Recipients = new ObservableCollection<Recipient>(db.Recipients);
+            Messages = new ObservableCollection<Message>(db.Messages);
         }
     }
 }
