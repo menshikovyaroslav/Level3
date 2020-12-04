@@ -1,10 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MailsAndSenders" Class="EMailsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-0NQABKF\SQLEXPRESS;Initial Catalog=MailsAndSenders;Integrated Security=True" SettingsObjectName="WpfApp1.Properties.Settings" SettingsPropertyName="MailsAndSendersConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Email" Member="Recipients">
+  <Table Name="dbo.Messages" Member="Messages">
+    <Type Name="Messages">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RecipientId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SenderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ServerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Sended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Recipients" Member="Recipients">
     <Type Name="Recipients">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Value" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Senders" Member="Senders">
+    <Type Name="Senders">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Servers" Member="Servers">
+    <Type Name="Servers">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Port" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsSSL" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

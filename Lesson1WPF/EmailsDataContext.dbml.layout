@@ -2,10 +2,28 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="EMails">
   <DataContextMoniker Name="/EMailsDataContext" />
   <nestedChildShapes>
-    <classShape Id="0ae9551b-d083-4e33-ba93-c3e9d793a99d" absoluteBounds="4.875, 1.625, 2, 1.3862939453125">
+    <classShape Id="a8bf04d6-e304-4f94-982b-9abd665b892f" absoluteBounds="2.75, 2.375, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/EMailsDataContext/Messages" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da2f10ac-5349-48e4-a3d8-e0d016ef17d8" absoluteBounds="2.7649999999999997, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1108d400-f26f-49da-8819-edf8ed08f3e2" absoluteBounds="5.75, 2.375, 2, 1.3862939453125">
       <DataClassMoniker Name="/EMailsDataContext/Recipients" />
       <nestedChildShapes>
-        <elementListCompartment Id="cc19e991-7274-4b7f-8ed7-c614dd3022c2" absoluteBounds="4.89, 2.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="da4a3c99-5c4b-4ff6-bc09-acfcf6eb371b" absoluteBounds="5.7650000000000006, 2.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a8626578-3426-4182-8832-839b83a0b36a" absoluteBounds="2.75, 4.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/EMailsDataContext/Senders" />
+      <nestedChildShapes>
+        <elementListCompartment Id="181c0ef8-d34c-440a-87ed-4846ed8600a0" absoluteBounds="2.7649999999999997, 5.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3f6c59de-121c-40d8-ae93-87bfccbb11a7" absoluteBounds="5.75, 4.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/EMailsDataContext/Servers" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f56ed2b8-9929-4a3c-b4fc-a7b8c08cdd39" absoluteBounds="5.7650000000000006, 5.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

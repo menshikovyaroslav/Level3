@@ -30,9 +30,18 @@ namespace WpfApp1
 		
     #region Определения метода расширяемости
     partial void OnCreated();
+    partial void InsertMessages(Messages instance);
+    partial void UpdateMessages(Messages instance);
+    partial void DeleteMessages(Messages instance);
     partial void InsertRecipients(Recipients instance);
     partial void UpdateRecipients(Recipients instance);
     partial void DeleteRecipients(Recipients instance);
+    partial void InsertSenders(Senders instance);
+    partial void UpdateSenders(Senders instance);
+    partial void DeleteSenders(Senders instance);
+    partial void InsertServers(Servers instance);
+    partial void UpdateServers(Servers instance);
+    partial void DeleteServers(Servers instance);
     #endregion
 		
 		public EMailsDataContext() : 
@@ -65,6 +74,14 @@ namespace WpfApp1
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Messages> Messages
+		{
+			get
+			{
+				return this.GetTable<Messages>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Recipients> Recipients
 		{
 			get
@@ -72,9 +89,183 @@ namespace WpfApp1
 				return this.GetTable<Recipients>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Senders> Senders
+		{
+			get
+			{
+				return this.GetTable<Senders>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Servers> Servers
+		{
+			get
+			{
+				return this.GetTable<Servers>();
+			}
+		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Email")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Messages")]
+	public partial class Messages : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _RecipientId;
+		
+		private int _SenderId;
+		
+		private int _ServerId;
+		
+		private bool _Sended;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnRecipientIdChanging(int value);
+    partial void OnRecipientIdChanged();
+    partial void OnSenderIdChanging(int value);
+    partial void OnSenderIdChanged();
+    partial void OnServerIdChanging(int value);
+    partial void OnServerIdChanged();
+    partial void OnSendedChanging(bool value);
+    partial void OnSendedChanged();
+    #endregion
+		
+		public Messages()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecipientId", DbType="Int NOT NULL")]
+		public int RecipientId
+		{
+			get
+			{
+				return this._RecipientId;
+			}
+			set
+			{
+				if ((this._RecipientId != value))
+				{
+					this.OnRecipientIdChanging(value);
+					this.SendPropertyChanging();
+					this._RecipientId = value;
+					this.SendPropertyChanged("RecipientId");
+					this.OnRecipientIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SenderId", DbType="Int NOT NULL")]
+		public int SenderId
+		{
+			get
+			{
+				return this._SenderId;
+			}
+			set
+			{
+				if ((this._SenderId != value))
+				{
+					this.OnSenderIdChanging(value);
+					this.SendPropertyChanging();
+					this._SenderId = value;
+					this.SendPropertyChanged("SenderId");
+					this.OnSenderIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServerId", DbType="Int NOT NULL")]
+		public int ServerId
+		{
+			get
+			{
+				return this._ServerId;
+			}
+			set
+			{
+				if ((this._ServerId != value))
+				{
+					this.OnServerIdChanging(value);
+					this.SendPropertyChanging();
+					this._ServerId = value;
+					this.SendPropertyChanged("ServerId");
+					this.OnServerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Sended", DbType="Bit NOT NULL")]
+		public bool Sended
+		{
+			get
+			{
+				return this._Sended;
+			}
+			set
+			{
+				if ((this._Sended != value))
+				{
+					this.OnSendedChanging(value);
+					this.SendPropertyChanging();
+					this._Sended = value;
+					this.SendPropertyChanged("Sended");
+					this.OnSendedChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Recipients")]
 	public partial class Recipients : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
@@ -82,7 +273,7 @@ namespace WpfApp1
 		
 		private int _Id;
 		
-		private string _Value;
+		private string _Address;
 		
 		private string _Name;
 		
@@ -92,8 +283,8 @@ namespace WpfApp1
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
-    partial void OnValueChanging(string value);
-    partial void OnValueChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     #endregion
@@ -123,22 +314,22 @@ namespace WpfApp1
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
-		public string Value
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Address
 		{
 			get
 			{
-				return this._Value;
+				return this._Address;
 			}
 			set
 			{
-				if ((this._Value != value))
+				if ((this._Address != value))
 				{
-					this.OnValueChanging(value);
+					this.OnAddressChanging(value);
 					this.SendPropertyChanging();
-					this._Value = value;
-					this.SendPropertyChanged("Value");
-					this.OnValueChanged();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
 				}
 			}
 		}
@@ -159,6 +350,250 @@ namespace WpfApp1
 					this._Name = value;
 					this.SendPropertyChanged("Name");
 					this.OnNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Senders")]
+	public partial class Senders : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Address;
+		
+		private string _Name;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public Senders()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Servers")]
+	public partial class Servers : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Address;
+		
+		private int _Port;
+		
+		private bool _IsSSL;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnAddressChanging(string value);
+    partial void OnAddressChanged();
+    partial void OnPortChanging(int value);
+    partial void OnPortChanged();
+    partial void OnIsSSLChanging(bool value);
+    partial void OnIsSSLChanged();
+    #endregion
+		
+		public Servers()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this.OnAddressChanging(value);
+					this.SendPropertyChanging();
+					this._Address = value;
+					this.SendPropertyChanged("Address");
+					this.OnAddressChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Port", DbType="Int NOT NULL")]
+		public int Port
+		{
+			get
+			{
+				return this._Port;
+			}
+			set
+			{
+				if ((this._Port != value))
+				{
+					this.OnPortChanging(value);
+					this.SendPropertyChanging();
+					this._Port = value;
+					this.SendPropertyChanged("Port");
+					this.OnPortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSSL", DbType="Bit NOT NULL")]
+		public bool IsSSL
+		{
+			get
+			{
+				return this._IsSSL;
+			}
+			set
+			{
+				if ((this._IsSSL != value))
+				{
+					this.OnIsSSLChanging(value);
+					this.SendPropertyChanging();
+					this._IsSSL = value;
+					this.SendPropertyChanged("IsSSL");
+					this.OnIsSSLChanged();
 				}
 			}
 		}
