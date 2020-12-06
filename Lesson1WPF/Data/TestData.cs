@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Lesson1WPF.Models;
+using WpfApp1.Models;
 
-namespace Lesson1WPF.Data
+namespace WpfApp1.Data
 {
     public static class TestData
     {

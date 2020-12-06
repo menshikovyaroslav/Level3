@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Models.Base;
 
-namespace Lesson1WPF.Models
+namespace WpfApp1.Models
 {
-    public class Server : Entity
+    [Table(Name = "Servers")]
+    public class Server
     {
-        public string Login { get; set; }
-        public string Password { get; set; }
+        [Column]
+        public int Id { get; set; }
+        [Column]
         public bool IsSSL { get; set; }
+        [Column]
         public string Address { get; set; }
+        [Column]
         public int Port { get; set; }
 
         public string FullAddress { get { return $"{Address}:{Port}"; } }

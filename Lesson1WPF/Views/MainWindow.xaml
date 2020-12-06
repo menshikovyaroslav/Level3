@@ -1,10 +1,10 @@
-﻿<Window x:Class="Lesson1WPF.Views.MainWindow"
+﻿<Window x:Class="WpfApp1.Views.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Lesson1WPF"
-        xmlns:data="clr-namespace:Lesson1WPF.Data"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:data="clr-namespace:WpfApp1.Data"
         xmlns:vm="clr-namespace:WpfApp1.ViewModels"
         xmlns:views="clr-namespace:WpfApp1.Views"
         xmlns:fa5="http://schemas.fontawesome.com/icons/" WindowState="Maximized"
@@ -44,7 +44,7 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <TextBlock Text="Сервера" VerticalAlignment="Center"></TextBlock>
-                                <ComboBox Margin="4,0" Height="20" SelectedIndex="0" VerticalContentAlignment="Center" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{Binding Servers}" DisplayMemberPath="FullAddress" SelectedItem="{Binding SelectedServer}">
+                                <ComboBox Margin="4,0" Height="20" SelectedIndex="0" VerticalContentAlignment="Center" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{Binding Servers}" DisplayMemberPath="Address" SelectedItem="{Binding SelectedServer}">
                                 </ComboBox>
                                 <Button Command="{Binding AddServerCommand}">
                                     <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -68,31 +68,13 @@
                                 <TextBlock VerticalAlignment="Center" Text="Отправители"></TextBlock>
                                 <ComboBox Margin="4,0" Height="20" VerticalContentAlignment="Center" SelectedIndex="0" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{Binding Senders}" DisplayMemberPath="Name" SelectedItem="{Binding SelectedSender}">
                                 </ComboBox>
-                                <Button>
+                                <Button Command="{Binding AddSenderCommand}">
                                     <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                                 </Button>
-                                <Button>
+                                <Button Command="{Binding EditSenderCommand}">
                                     <fa5:SvgAwesome Icon="Solid_Edit" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
-                                <Button>
-                                    <fa5:SvgAwesome Icon="Solid_Trash" Foreground="#FFFB3307" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                </Button>
-                            </StackPanel>
-                        </ToolBar>
-                        <ToolBar Header="Получатели" Width="160" Band="1" Height="30">
-                            <StackPanel Orientation="Horizontal">
-                                <StackPanel.Resources>
-                                    <Style TargetType="Button">
-                                        <Setter Property="Height" Value="20"></Setter>
-                                    </Style>
-                                </StackPanel.Resources>
-                                <Button>
-                                    <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                </Button>
-                                <Button>
-                                    <fa5:SvgAwesome Icon="Solid_Edit" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                </Button>
-                                <Button>
+                                <Button Command="{Binding DelSenderCommand}">
                                     <fa5:SvgAwesome Icon="Solid_Trash" Foreground="#FFFB3307" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 </Button>
                             </StackPanel>
@@ -119,7 +101,7 @@
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Календарь" Grid.Column="0">
                         <StackPanel Orientation="Vertical" Width="180">
-                            <Calendar>
+                            <Calendar Name="Calendar" SelectedDate="{Binding SelectedTime}">
                             </Calendar>
                             <Button Name="SendButton" Margin="2" Command="{Binding SendMessageCommand}">
                                 <StackPanel Orientation="Horizontal">
@@ -127,7 +109,7 @@
                                     <fa5:SvgAwesome Icon="Brands_FacebookMessenger" Foreground="#FFFB3307" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" />
                                 </StackPanel>
                             </Button>
-                            <Button Margin="2">
+                            <Button Margin="2" Command="{Binding ScheduleMessageCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock VerticalAlignment="Center" Text="Запланировать" Margin="10,0"></TextBlock>
                                     <fa5:SvgAwesome Icon="Regular_Clock" Foreground="#FF3E07FB" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" />

@@ -123,6 +123,18 @@ namespace WpfApp1
 		
 		private bool _Sended;
 		
+		private string _Subject;
+		
+		private string _Body;
+		
+		private string _Time;
+		
+		private EntityRef<Recipients> _Recipients;
+		
+		private EntityRef<Senders> _Senders;
+		
+		private EntityRef<Servers> _Servers;
+		
     #region Определения метода расширяемости
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -137,10 +149,19 @@ namespace WpfApp1
     partial void OnServerIdChanged();
     partial void OnSendedChanging(bool value);
     partial void OnSendedChanged();
+    partial void OnSubjectChanging(string value);
+    partial void OnSubjectChanged();
+    partial void OnBodyChanging(string value);
+    partial void OnBodyChanged();
+    partial void OnTimeChanging(string value);
+    partial void OnTimeChanged();
     #endregion
 		
 		public Messages()
 		{
+			this._Recipients = default(EntityRef<Recipients>);
+			this._Senders = default(EntityRef<Senders>);
+			this._Servers = default(EntityRef<Servers>);
 			OnCreated();
 		}
 		
@@ -175,6 +196,10 @@ namespace WpfApp1
 			{
 				if ((this._RecipientId != value))
 				{
+					if (this._Recipients.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnRecipientIdChanging(value);
 					this.SendPropertyChanging();
 					this._RecipientId = value;
@@ -195,6 +220,10 @@ namespace WpfApp1
 			{
 				if ((this._SenderId != value))
 				{
+					if (this._Senders.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnSenderIdChanging(value);
 					this.SendPropertyChanging();
 					this._SenderId = value;
@@ -215,6 +244,10 @@ namespace WpfApp1
 			{
 				if ((this._ServerId != value))
 				{
+					if (this._Servers.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
 					this.OnServerIdChanging(value);
 					this.SendPropertyChanging();
 					this._ServerId = value;
@@ -240,6 +273,168 @@ namespace WpfApp1
 					this._Sended = value;
 					this.SendPropertyChanged("Sended");
 					this.OnSendedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Subject", DbType="NVarChar(MAX)")]
+		public string Subject
+		{
+			get
+			{
+				return this._Subject;
+			}
+			set
+			{
+				if ((this._Subject != value))
+				{
+					this.OnSubjectChanging(value);
+					this.SendPropertyChanging();
+					this._Subject = value;
+					this.SendPropertyChanged("Subject");
+					this.OnSubjectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Body", DbType="NVarChar(MAX)")]
+		public string Body
+		{
+			get
+			{
+				return this._Body;
+			}
+			set
+			{
+				if ((this._Body != value))
+				{
+					this.OnBodyChanging(value);
+					this.SendPropertyChanging();
+					this._Body = value;
+					this.SendPropertyChanged("Body");
+					this.OnBodyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="NVarChar(MAX)")]
+		public string Time
+		{
+			get
+			{
+				return this._Time;
+			}
+			set
+			{
+				if ((this._Time != value))
+				{
+					this.OnTimeChanging(value);
+					this.SendPropertyChanging();
+					this._Time = value;
+					this.SendPropertyChanged("Time");
+					this.OnTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipients_Messages", Storage="_Recipients", ThisKey="RecipientId", OtherKey="Id", IsForeignKey=true)]
+		public Recipients Recipients
+		{
+			get
+			{
+				return this._Recipients.Entity;
+			}
+			set
+			{
+				Recipients previousValue = this._Recipients.Entity;
+				if (((previousValue != value) 
+							|| (this._Recipients.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Recipients.Entity = null;
+						previousValue.Messages.Remove(this);
+					}
+					this._Recipients.Entity = value;
+					if ((value != null))
+					{
+						value.Messages.Add(this);
+						this._RecipientId = value.Id;
+					}
+					else
+					{
+						this._RecipientId = default(int);
+					}
+					this.SendPropertyChanged("Recipients");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Senders_Messages", Storage="_Senders", ThisKey="SenderId", OtherKey="Id", IsForeignKey=true)]
+		public Senders Senders
+		{
+			get
+			{
+				return this._Senders.Entity;
+			}
+			set
+			{
+				Senders previousValue = this._Senders.Entity;
+				if (((previousValue != value) 
+							|| (this._Senders.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Senders.Entity = null;
+						previousValue.Messages.Remove(this);
+					}
+					this._Senders.Entity = value;
+					if ((value != null))
+					{
+						value.Messages.Add(this);
+						this._SenderId = value.Id;
+					}
+					else
+					{
+						this._SenderId = default(int);
+					}
+					this.SendPropertyChanged("Senders");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Servers_Messages", Storage="_Servers", ThisKey="ServerId", OtherKey="Id", IsForeignKey=true)]
+		public Servers Servers
+		{
+			get
+			{
+				return this._Servers.Entity;
+			}
+			set
+			{
+				Servers previousValue = this._Servers.Entity;
+				if (((previousValue != value) 
+							|| (this._Servers.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Servers.Entity = null;
+						previousValue.Messages.Remove(this);
+					}
+					this._Servers.Entity = value;
+					if ((value != null))
+					{
+						value.Messages.Add(this);
+						this._ServerId = value.Id;
+					}
+					else
+					{
+						this._ServerId = default(int);
+					}
+					this.SendPropertyChanged("Servers");
 				}
 			}
 		}
@@ -277,6 +472,8 @@ namespace WpfApp1
 		
 		private string _Name;
 		
+		private EntitySet<Messages> _Messages;
+		
     #region Определения метода расширяемости
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -291,6 +488,7 @@ namespace WpfApp1
 		
 		public Recipients()
 		{
+			this._Messages = new EntitySet<Messages>(new Action<Messages>(this.attach_Messages), new Action<Messages>(this.detach_Messages));
 			OnCreated();
 		}
 		
@@ -354,6 +552,19 @@ namespace WpfApp1
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Recipients_Messages", Storage="_Messages", ThisKey="Id", OtherKey="RecipientId")]
+		public EntitySet<Messages> Messages
+		{
+			get
+			{
+				return this._Messages;
+			}
+			set
+			{
+				this._Messages.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -372,6 +583,18 @@ namespace WpfApp1
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Messages(Messages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipients = this;
+		}
+		
+		private void detach_Messages(Messages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Recipients = null;
 		}
 	}
 	
@@ -387,6 +610,10 @@ namespace WpfApp1
 		
 		private string _Name;
 		
+		private string _Password;
+		
+		private EntitySet<Messages> _Messages;
+		
     #region Определения метода расширяемости
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -397,10 +624,13 @@ namespace WpfApp1
     partial void OnAddressChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
     #endregion
 		
 		public Senders()
 		{
+			this._Messages = new EntitySet<Messages>(new Action<Messages>(this.attach_Messages), new Action<Messages>(this.detach_Messages));
 			OnCreated();
 		}
 		
@@ -464,6 +694,39 @@ namespace WpfApp1
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(MAX)")]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Senders_Messages", Storage="_Messages", ThisKey="Id", OtherKey="SenderId")]
+		public EntitySet<Messages> Messages
+		{
+			get
+			{
+				return this._Messages;
+			}
+			set
+			{
+				this._Messages.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -482,6 +745,18 @@ namespace WpfApp1
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Messages(Messages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Senders = this;
+		}
+		
+		private void detach_Messages(Messages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Senders = null;
 		}
 	}
 	
@@ -499,6 +774,8 @@ namespace WpfApp1
 		
 		private bool _IsSSL;
 		
+		private EntitySet<Messages> _Messages;
+		
     #region Определения метода расширяемости
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -515,6 +792,7 @@ namespace WpfApp1
 		
 		public Servers()
 		{
+			this._Messages = new EntitySet<Messages>(new Action<Messages>(this.attach_Messages), new Action<Messages>(this.detach_Messages));
 			OnCreated();
 		}
 		
@@ -598,6 +876,19 @@ namespace WpfApp1
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Servers_Messages", Storage="_Messages", ThisKey="Id", OtherKey="ServerId")]
+		public EntitySet<Messages> Messages
+		{
+			get
+			{
+				return this._Messages;
+			}
+			set
+			{
+				this._Messages.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -616,6 +907,18 @@ namespace WpfApp1
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Messages(Messages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Servers = this;
+		}
+		
+		private void detach_Messages(Messages entity)
+		{
+			this.SendPropertyChanging();
+			entity.Servers = null;
 		}
 	}
 }

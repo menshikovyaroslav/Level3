@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WpfApp1.Models.Base;
+using System.Data.Linq.Mapping;
 
-namespace Lesson1WPF.Models
+namespace WpfApp1.Models
 {
-    public class Recipient : Person, IDataErrorInfo
+    [Table(Name = "Recipients")]
+    public class Recipient : IDataErrorInfo
     {
         public string this[string columnName]
         {
@@ -23,18 +21,12 @@ namespace Lesson1WPF.Models
                 return "";
             }
         }
-
-        public override string Name { get => base.Name;
-            set
-            {
-           //     if (value is null) throw new ArgumentException("Пустое имя", nameof(value));
-          //      if (value == "") throw new ArgumentException("Пустое имя", nameof(value));
-          //      if (value.Length < 3) throw new ArgumentException("Слишком короткое имя", nameof(value));
-           //     if (value == "Usama") throw new ArgumentException("Нельзя выбрать такое имя !", nameof(value));
-
-                base.Name = value;
-            }
-        }
+        [Column]
+        public int Id { get; set; }
+        [Column]
+        public string Name { get; set; }
+        [Column]
+        public string Address { get; set; }
 
         public string Error => throw new NotImplementedException();
     }

@@ -10,9 +10,9 @@ namespace WpfApp1.Services
 {
     public class SmtpMailService : IMailService
     {
-        public IMailSender GetSender(string Server, int Port, bool IsSSL, string Login, string Password)
+        public IMailSender GetSender(string Server, int Port, bool IsSSL)
         {
-            return new SmtpMailSender(Server, Port, IsSSL, Login, Password);
+            return new SmtpMailSender(Server, Port, IsSSL);
         }
     }
 
@@ -21,19 +21,15 @@ namespace WpfApp1.Services
         public string Address { get; set; }
         public int Port { get; set; }
         public bool IsSSL { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
 
-        public SmtpMailSender(string address, int port, bool isSSL, string login, string password)
+        public SmtpMailSender(string address, int port, bool isSSL)
         {
             Address = address;
             Port = port;
             IsSSL = isSSL;
-            Login = login;
-            Password = password;
         }
 
-        public void Send(string from, string recipient, string subject, string body)
+        public void Send(string from, string recipient, string subject, string body, string login, string password)
         {
             try
             {
@@ -49,7 +45,7 @@ namespace WpfApp1.Services
                     client.Port = Port;
                     client.Timeout = 5000;
                     client.EnableSsl = true;
-                    client.Credentials = new NetworkCredential(Login, Password); // Ваши логин и пароль
+                    client.Credentials = new NetworkCredential(login, password); // Ваши логин и пароль
                     client.Send(mail);
                 }
             }

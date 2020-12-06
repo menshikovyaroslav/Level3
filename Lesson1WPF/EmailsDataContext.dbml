@@ -7,6 +7,12 @@
       <Column Name="SenderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ServerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Sended" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Subject" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Body" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Time" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Recipients_Messages" Member="Recipients" ThisKey="RecipientId" OtherKey="Id" Type="Recipients" IsForeignKey="true" />
+      <Association Name="Senders_Messages" Member="Senders" ThisKey="SenderId" OtherKey="Id" Type="Senders" IsForeignKey="true" />
+      <Association Name="Servers_Messages" Member="Servers" ThisKey="ServerId" OtherKey="Id" Type="Servers" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Recipients" Member="Recipients">
@@ -14,6 +20,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Association Name="Recipients_Messages" Member="Messages" ThisKey="Id" OtherKey="RecipientId" Type="Messages" />
     </Type>
   </Table>
   <Table Name="dbo.Senders" Member="Senders">
@@ -21,6 +28,8 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Senders_Messages" Member="Messages" ThisKey="Id" OtherKey="SenderId" Type="Messages" />
     </Type>
   </Table>
   <Table Name="dbo.Servers" Member="Servers">
@@ -29,6 +38,7 @@
       <Column Name="Address" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
       <Column Name="Port" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IsSSL" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Servers_Messages" Member="Messages" ThisKey="Id" OtherKey="ServerId" Type="Messages" />
     </Type>
   </Table>
 </Database>

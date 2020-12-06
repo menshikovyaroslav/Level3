@@ -8,11 +8,11 @@ namespace WpfApp1.Services
 {
     public interface IMailService
     {
-        IMailSender GetSender(string Server, int Port, bool IsSSL, string Login, string Password);
+        IMailSender GetSender(string Server, int Port, bool IsSSL);
     }
 
     public interface IMailSender
     {
-        void Send(string from, string recipient, string subject, string body);
+        void Send(string from, string recipient, string subject, string body, string login, string password);
     }
 }

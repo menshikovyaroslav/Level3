@@ -1,13 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WpfApp1.Models.Base;
 
-namespace Lesson1WPF.Models
+namespace WpfApp1.Models
 {
-    public class Sender : Person
+    [Table(Name = "Senders")]
+    public class Sender
     {
+        [Column]
+        public int Id { get; set; }
+        [Column]
+        public string Password { get; set; }
+        [Column]
+        public string Name { get; set; }
+        [Column]
+        public string Address { get; set; }
     }
 }

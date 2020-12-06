@@ -1,9 +1,6 @@
-﻿using Support;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,18 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WpfApp1.Data;
 
 namespace WpfApp1.Views
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ServerWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SenderWindow : Window
     {
-        public MainWindow()
+        public SenderWindow()
         {
             InitializeComponent();
         }

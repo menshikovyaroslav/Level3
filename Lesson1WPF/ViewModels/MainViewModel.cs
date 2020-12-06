@@ -1,6 +1,4 @@
-﻿using Lesson1WPF.Data;
-using Lesson1WPF.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -11,6 +9,7 @@ using System.Windows;
 using System.Windows.Input;
 using WpfApp1.Commands;
 using WpfApp1.Data;
+using WpfApp1.Models;
 using WpfApp1.Services;
 
 namespace WpfApp1.ViewModels
@@ -59,10 +58,17 @@ namespace WpfApp1.ViewModels
             set { _messages = value; }
         }
 
+        private DateTime _selectedTime;
         private Server _selectedServer;
         private Sender _selectedSender;
         private Recipient _selectedRecipient;
         private Message _selectedMessage;
+
+        public DateTime SelectedTime
+        {
+            get { return _selectedTime; }
+            set { _selectedTime = value; OnPropertyChanged(); }
+        }
 
         public Server SelectedServer
         {
@@ -88,22 +94,37 @@ namespace WpfApp1.ViewModels
 
         private IMailService _mailService { get; set; }
 
+        private DBclass _db;
+
+        private SchedulerClass _schedulerClass; 
+
+
         public MainViewModel(IMailService mailService)
         {
             _mailService = mailService;
-            var db = new DBclass();
+            _db = new DBclass();
 
             SendMessageCommand = new Command(SendMessageCommand_Execute, SendMessageCommand_CanExecute);
+            ScheduleMessageCommand = new Command(ScheduleMessageCommand_Execute, ScheduleMessageCommand_CanExecute);
             DialogCommand = new RelayCommand<string>(DialogCommand_Execute, DialogCommand_CanExecute);
 
             AddServerCommand = new Command(AddServerCommand_Execute, AddServerCommand_CanExecute);
             EditServerCommand = new Command(EditServerCommand_Execute, EditServerCommand_CanExecute);
             DelServerCommand = new Command(DelServerCommand_Execute, DelServerCommand_CanExecute);
 
-            Servers = new ObservableCollection<Server>(db.Servers);
-            Senders = new ObservableCollection<Sender>(db.Senders);
-            Recipients = new ObservableCollection<Recipient>(db.Recipients);
-            Messages = new ObservableCollection<Message>(db.Messages);
+            AddSenderCommand = new Command(AddSenderCommand_Execute, AddSenderCommand_CanExecute);
+            EditSenderCommand = new Command(EditSenderCommand_Execute, EditSenderCommand_CanExecute);
+            DelSenderCommand = new Command(DelSenderCommand_Execute, DelSenderCommand_CanExecute);
+
+            SaveServerCommand = new Command(SaveServerCommand_Execute, SaveServerCommand_CanExecute);
+            SaveSenderCommand = new Command(SaveSenderCommand_Execute, SaveSenderCommand_CanExecute);
+
+            Servers = new ObservableCollection<Server>(_db.Servers);
+            Senders = new ObservableCollection<Sender>(_db.Senders);
+            Recipients = new ObservableCollection<Recipient>(_db.Recipients);
+            Messages = new ObservableCollection<Message>(_db.Messages);
+
+            _schedulerClass = new SchedulerClass(_mailService, Messages);
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Windows;
 using WpfApp1.Services;
 using WpfApp1.ViewModels;
 
-namespace Lesson1WPF
+namespace WpfApp1
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

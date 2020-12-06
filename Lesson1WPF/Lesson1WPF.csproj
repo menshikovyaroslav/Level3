@@ -212,6 +212,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Data\DBclass.cs" />
     <Compile Include="Data\PgDb.cs" />
+    <Compile Include="Data\SchedulerClass.cs" />
     <Compile Include="Data\ValidationRules\IntValidation.cs" />
     <Compile Include="Data\ValidationRules\MailValidation.cs" />
     <Compile Include="EmailsDataContext.cs">
@@ -225,6 +226,7 @@
     <Compile Include="Data\PasswordClass.cs" />
     <Compile Include="Data\TestData.cs" />
     <Compile Include="Models\Base\Entity.cs" />
+    <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\Sender.cs" />
@@ -241,6 +243,12 @@
     </Compile>
     <Compile Include="Views\RecipientsEditor.xaml.cs">
       <DependentUpon>RecipientsEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SenderWindow.xaml.cs">
+      <DependentUpon>SenderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ServerWindow.xaml.cs">
+      <DependentUpon>ServerWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -259,6 +267,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RecipientsEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SenderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ServerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,6 +297,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="EmailsDataContext.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>EmailsDataContext.designer.cs</LastGenOutput>
