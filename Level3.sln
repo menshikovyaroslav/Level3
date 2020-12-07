@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wpfMutex", "wpfMutex\wpfMut
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp8", "ConsoleApp8\ConsoleApp8.csproj", "{44A47CD9-D01E-4879-A83C-6190DCB8E1BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp9", "ConsoleApp9\ConsoleApp9.csproj", "{C55D04D5-EF85-4847-AB15-6A25CC81063A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -115,6 +117,10 @@ Global
 		{44A47CD9-D01E-4879-A83C-6190DCB8E1BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44A47CD9-D01E-4879-A83C-6190DCB8E1BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44A47CD9-D01E-4879-A83C-6190DCB8E1BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C55D04D5-EF85-4847-AB15-6A25CC81063A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C55D04D5-EF85-4847-AB15-6A25CC81063A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C55D04D5-EF85-4847-AB15-6A25CC81063A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C55D04D5-EF85-4847-AB15-6A25CC81063A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -132,6 +138,7 @@ Global
 		{DDFB377B-E720-429B-9E80-938AB25B035A} = {2F0AA449-6ACE-4881-B511-2FCA3F274CC9}
 		{F2D79C9D-FEB2-415F-8DA2-55C60910224C} = {2F0AA449-6ACE-4881-B511-2FCA3F274CC9}
 		{44A47CD9-D01E-4879-A83C-6190DCB8E1BD} = {2F0AA449-6ACE-4881-B511-2FCA3F274CC9}
+		{C55D04D5-EF85-4847-AB15-6A25CC81063A} = {2F0AA449-6ACE-4881-B511-2FCA3F274CC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAA779C8-9A37-4D55-827B-8255DE1D3BCC}
