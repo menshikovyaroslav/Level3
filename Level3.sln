@@ -15,9 +15,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clearmvvm2", "Clearmvvm2\Cl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DFCE62AC-384E-400A-BA1C-0F847EAF1DBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportTests", "SupportTests\SupportTests.csproj", "{D9C30997-3907-4B45-8635-BF385489BA65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupportTests", "SupportTests\SupportTests.csproj", "{D9C30997-3907-4B45-8635-BF385489BA65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupportTests_v2", "SupportTests_v2\SupportTests_v2.csproj", "{B66EDC13-815B-467A-985D-015DC490A0D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupportTests_v2", "SupportTests_v2\SupportTests_v2.csproj", "{B66EDC13-815B-467A-985D-015DC490A0D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThreadTests", "ThreadTests", "{2F0AA449-6ACE-4881-B511-2FCA3F274CC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{8072A652-C1B7-432F-B052-C45F4AC20DF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{B66EDC13-815B-467A-985D-015DC490A0D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B66EDC13-815B-467A-985D-015DC490A0D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B66EDC13-815B-467A-985D-015DC490A0D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8072A652-C1B7-432F-B052-C45F4AC20DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8072A652-C1B7-432F-B052-C45F4AC20DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8072A652-C1B7-432F-B052-C45F4AC20DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8072A652-C1B7-432F-B052-C45F4AC20DF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D9C30997-3907-4B45-8635-BF385489BA65} = {DFCE62AC-384E-400A-BA1C-0F847EAF1DBA}
 		{B66EDC13-815B-467A-985D-015DC490A0D3} = {DFCE62AC-384E-400A-BA1C-0F847EAF1DBA}
+		{8072A652-C1B7-432F-B052-C45F4AC20DF8} = {2F0AA449-6ACE-4881-B511-2FCA3F274CC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAA779C8-9A37-4D55-827B-8255DE1D3BCC}
