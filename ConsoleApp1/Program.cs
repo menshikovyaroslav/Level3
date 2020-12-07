@@ -9,6 +9,8 @@ namespace ConsoleApp1
 {
     class Program
     {
+        static bool isTimeWork = true;
+
         static void Main(string[] args)
         {
             var thread = Thread.CurrentThread;
@@ -24,6 +26,8 @@ namespace ConsoleApp1
             t.IsBackground = true;
             t.Start();
 
+
+
             //var t2 = new Thread(new ParameterizedThreadStart(PrintTimeParameter));
             //t2.IsBackground = true;
             //t2.Start("Hello world");
@@ -32,19 +36,34 @@ namespace ConsoleApp1
             //t3.IsBackground = true;
             //t3.Start();
 
-            var time = new Time("New text", 100);
-            new Thread(time.Print).Start();
+            //var time = new Time("New text", 100);
+            //new Thread(time.Print).Start();
+
 
             while (true)
             {
-                Console.ReadLine();
+                var isEnded = t.Join(100);
+
+                if (isEnded)
+                {
+                    Console.WriteLine("thread was ended");
+                }
+
+                var command = Console.ReadLine();
+                if (command == "q")
+                {
+                    //    t.Abort();
+                    //    t.Interrupt();
+                    isTimeWork = false;
+
+                }
             }
 
         }
 
         static void PrintTime()
         {
-            while (true)
+            while (isTimeWork)
             {
                 var now = DateTime.Now;
                 Console.Title = $"{now.ToString("HH:mm:ss.ffff")}";
