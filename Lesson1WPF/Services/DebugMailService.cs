@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WpfApp1.Services
@@ -35,6 +36,22 @@ namespace WpfApp1.Services
             Debug.WriteLine($"Send from={from} to={recipient}");
             Debug.WriteLine($"Subject={subject}");
             Debug.WriteLine($"Body={body}");
+        }
+
+        public void Send(string from, IEnumerable<string> recipients, string subject, string body, string login, string password)
+        {
+            foreach (var recipient in recipients)
+            {
+                Send(from, recipient, subject, body, login, password);
+            }
+        }
+
+        public void SendParallel(string from, IEnumerable<string> recipients, string subject, string body, string login, string password)
+        {
+            foreach (var recipient in recipients)
+            {
+                ThreadPool.QueueUserWorkItem(o => Send(from, recipient, subject, body, login, password));
+            }
         }
     }
 }
