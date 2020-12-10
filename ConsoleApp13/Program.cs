@@ -14,7 +14,13 @@ namespace ConsoleApp13
             var mainThread = Thread.CurrentThread;
             Console.WriteLine($"Главный поток {mainThread.ManagedThreadId}");
 
-            Work();
+            Action action = new Action(()=>
+            {
+                Console.WriteLine("test action");
+            });
+            action.Invoke();
+
+       //     Work();
 
             Console.ReadLine();
         }
