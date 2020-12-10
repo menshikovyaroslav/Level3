@@ -16,5 +16,8 @@ namespace WpfApp1.Services
         void Send(string from, string recipient, string subject, string body, string login, string password);
         void Send(string from, IEnumerable<string> recipients, string subject, string body, string login, string password);
         void SendParallel(string from, IEnumerable<string> recipients, string subject, string body, string login, string password);
+
+        Task SendAsync(string from, string recipient, string subject, string body, string login, string password);
+        Task SendAsync(string from, IEnumerable<string> recipients, string subject, string body, string login, string password);
     }
 }

@@ -134,7 +134,7 @@ namespace WpfApp1.ViewModels
         public void SendMessageCommand_Execute()
         {
             var mailSender = _mailService.GetSender(SelectedServer.Address, SelectedServer.Port, SelectedServer.IsSSL);
-            mailSender.Send(SelectedSender.Address, SelectedRecipient.Address, SelectedMessage.Subject, SelectedMessage.Body, SelectedSender.Address, SelectedSender.Password);
+            mailSender.SendAsync(SelectedSender.Address, SelectedRecipient.Address, SelectedMessage.Subject, SelectedMessage.Body, SelectedSender.Address, SelectedSender.Password);
         }
 
         public bool SendMessageCommand_CanExecute()

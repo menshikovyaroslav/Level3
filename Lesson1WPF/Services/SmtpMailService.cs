@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WpfApp1.Services
@@ -51,6 +52,38 @@ namespace WpfApp1.Services
             }
             catch (Exception ex)
             {
+            }
+        }
+
+        public void Send(string from, IEnumerable<string> recipients, string subject, string body, string login, string password)
+        {
+            foreach (var recipient in recipients)
+            {
+                Send(from, recipient, subject, body, login, password);
+            }
+        }
+
+        public void SendParallel(string from, IEnumerable<string> recipients, string subject, string body, string login, string password)
+        {
+            foreach (var recipient in recipients)
+            {
+                ThreadPool.QueueUserWorkItem(o => Send(from, recipient, subject, body, login, password));
+            }
+        }
+
+        public async Task SendAsync(string from, string recipient, string subject, string body, string login, string password)
+        {
+            await Task.Run(() =>
+            {
+                Send(from, recipient, subject, body, login, password);
+            });
+        }
+
+        public async Task SendAsync(string from, IEnumerable<string> recipients, string subject, string body, string login, string password)
+        {
+            foreach (var recipient in recipients)
+            {
+                await SendAsync(from, recipient, subject, body, login, password);
             }
         }
     }

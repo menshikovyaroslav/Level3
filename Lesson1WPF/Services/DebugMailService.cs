@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WpfApp1.Services
 {
@@ -33,6 +34,8 @@ namespace WpfApp1.Services
 
         public void Send(string from, string recipient, string subject, string body, string login, string password)
         {
+            var currThread = Thread.CurrentThread;
+            Debug.WriteLine($"currThreadId = {currThread.ManagedThreadId}");
             Debug.WriteLine($"Send from={from} to={recipient}");
             Debug.WriteLine($"Subject={subject}");
             Debug.WriteLine($"Body={body}");
@@ -51,6 +54,25 @@ namespace WpfApp1.Services
             foreach (var recipient in recipients)
             {
                 ThreadPool.QueueUserWorkItem(o => Send(from, recipient, subject, body, login, password));
+            }
+        }
+
+        public async Task SendAsync(string from, string recipient, string subject, string body, string login, string password)
+        {
+            await Task.Run(()=>
+            {
+                Thread.Sleep(3000);
+                Send(from, recipient, subject, body, login, password);
+            });
+
+            MessageBox.Show("Сообщение отправлено");
+        }
+
+        public async Task SendAsync(string from, IEnumerable<string> recipients, string subject, string body, string login, string password)
+        {
+            foreach (var recipient in recipients)
+            {
+                await SendAsync(from, recipient, subject, body, login, password);
             }
         }
     }
