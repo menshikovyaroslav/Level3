@@ -12,7 +12,7 @@ namespace ef_test.Data
     {
         public StudentsDb CreateDbContext(string[] args)
         {
-            const string connString = @"Data Source=DESKTOP-0NQABKF\SQLEXPRESS;Initial Catalog=Students;Integrated Security=True";
+            const string connString = @"Data Source=DESKTOP-0NQABKF\SQLEXPRESS;Initial Catalog=MailDb;Integrated Security=True";
 
             var optionsBuilder = new DbContextOptionsBuilder<StudentsDb>();
             optionsBuilder.UseSqlServer(connString);

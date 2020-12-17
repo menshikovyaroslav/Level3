@@ -95,14 +95,18 @@ namespace WpfApp1.ViewModels
         private IMailService _mailService { get; set; }
 
         private DBclass _db;
+        private MailSenderDb _mailSenderDb;
 
         private SchedulerClass _schedulerClass; 
 
 
-        public MainViewModel(IMailService mailService)
+        public MainViewModel(IMailService mailService, MailSenderDb mailSenderDb)
         {
             _mailService = mailService;
             _db = new DBclass();
+            _mailSenderDb = mailSenderDb;
+
+            _mailSenderDb.Database.EnsureCreated();
 
             SendMessageCommand = new Command(SendMessageCommand_Execute, SendMessageCommand_CanExecute);
             ScheduleMessageCommand = new Command(ScheduleMessageCommand_Execute, ScheduleMessageCommand_CanExecute);
@@ -119,12 +123,42 @@ namespace WpfApp1.ViewModels
             SaveServerCommand = new Command(SaveServerCommand_Execute, SaveServerCommand_CanExecute);
             SaveSenderCommand = new Command(SaveSenderCommand_Execute, SaveSenderCommand_CanExecute);
 
-            Servers = new ObservableCollection<Server>(_db.Servers);
-            Senders = new ObservableCollection<Sender>(_db.Senders);
-            Recipients = new ObservableCollection<Recipient>(_db.Recipients);
-            Messages = new ObservableCollection<Message>(_db.Messages);
+            Servers = new ObservableCollection<Server>(TestData.Servers);
+            Senders = new ObservableCollection<Sender>(TestData.Senders);
+            Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
+            Messages = new ObservableCollection<Message>(TestData.Messages);
+
+            LoadTestDataInDb();
 
             _schedulerClass = new SchedulerClass(_mailService, Messages);
+        }
+
+        private void LoadTestDataInDb()
+        {
+            var serversCount = _mailSenderDb.Servers.Count();
+            if (serversCount == 0)
+            {
+                _mailSenderDb.Servers.AddRange(Servers);
+                _mailSenderDb.SaveChanges();
+            }
+            var sendersCount = _mailSenderDb.Senders.Count();
+            if (sendersCount == 0)
+            {
+                _mailSenderDb.Senders.AddRange(Senders);
+                _mailSenderDb.SaveChanges();
+            }
+            var recipientsCount = _mailSenderDb.Recipients.Count();
+            if (recipientsCount == 0)
+            {
+                _mailSenderDb.Recipients.AddRange(Recipients);
+                _mailSenderDb.SaveChanges();
+            }
+            var messagesCount = _mailSenderDb.Messages.Count();
+            if (messagesCount == 0)
+            {
+                _mailSenderDb.Messages.AddRange(Messages);
+                _mailSenderDb.SaveChanges();
+            }
         }
     }
 }

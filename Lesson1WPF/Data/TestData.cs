@@ -35,7 +35,7 @@ namespace WpfApp1.Data
         {
             get
             {
-                return Enumerable.Range(0, 10).Select(i => new Recipient() { Address = $"address{i}", Name = $"name{i}", Id=i }).ToList();
+                return Enumerable.Range(0, 10).Select(i => new Recipient() { Address = $"address{i}", Name = $"name{i}"}).ToList();
             }
         }
 

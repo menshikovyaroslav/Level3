@@ -53,10 +53,13 @@ namespace WpfApp1.ViewModels
         {
             var random = new Random();
 
-            var server = new Server() {Id = random.Next(1, 1000), Address = "server.ru", Port = 10000, IsSSL = true };
+            var server = new Server() { Address = "server555.ru", Port = 5555, IsSSL = true };
             Servers.Add(server);
 
-            _db.AddServer(server);
+            _mailSenderDb.Servers.Add(server);
+            _mailSenderDb.SaveChanges();
+
+          //  _db.AddServer(server);
         }
 
         public bool AddServerCommand_CanExecute()

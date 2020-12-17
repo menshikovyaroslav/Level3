@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WpfApp1.Data;
 using WpfApp1.Services;
 using WpfApp1.ViewModels;
 
@@ -18,6 +20,7 @@ namespace WpfApp1
     public partial class App : Application
     {
         private static IHost _hosting;
+        const string connString = @"Data Source=DESKTOP-0NQABKF\SQLEXPRESS;Initial Catalog=MailDb;Integrated Security=True";
 
         public static IHost Hosting
         {
@@ -38,7 +41,7 @@ namespace WpfApp1
 #endif
 
             services.AddSingleton<MainViewModel>();
-
+            services.AddDbContext<MailSenderDb>(c=>c.UseSqlServer(connString));
         }
 
         public static IServiceProvider Services { get { return Hosting.Services; } }
