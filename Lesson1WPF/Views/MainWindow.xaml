@@ -44,7 +44,7 @@
                                     </Style>
                                 </StackPanel.Resources>
                                 <TextBlock Text="Сервера" VerticalAlignment="Center"></TextBlock>
-                                <ComboBox Margin="4,0" Height="20" SelectedIndex="0" VerticalContentAlignment="Center" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{Binding Servers}" DisplayMemberPath="Address" SelectedItem="{Binding SelectedServer}">
+                                <ComboBox Margin="4,0" Height="20" SelectedIndex="0" VerticalContentAlignment="Center" Width="100" FontFamily="Arial" FontSize="10" ItemsSource="{Binding Servers}" DisplayMemberPath="Port" SelectedItem="{Binding SelectedServer}">
                                 </ComboBox>
                                 <Button Command="{Binding AddServerCommand}">
                                     <fa5:SvgAwesome Icon="Brands_Adn" Foreground="#FF0A3470" VerticalAlignment="Center" HorizontalAlignment="Center"/>

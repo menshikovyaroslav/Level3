@@ -72,8 +72,15 @@ namespace WpfApp1.ViewModels
 
         public void EditServerCommand_Execute()
         {
-            var serverWindow = new ServerWindow();
-            serverWindow.ShowDialog();
+            SelectedServer.Port++;
+
+            OnPropertyChanged("SelectedServer");
+
+            _mailSenderDb.Servers.Update(SelectedServer);
+            _mailSenderDb.SaveChanges();
+
+            //var serverWindow = new ServerWindow();
+            //serverWindow.ShowDialog();
         }
 
         public bool EditServerCommand_CanExecute()
