@@ -31,8 +31,8 @@ namespace WpfApp1.Models
             get
             {
                 var result = DateTime.MaxValue;
-                var splitted = Time.Split('-');
-                if (splitted.Length == 3)
+                var splitted = Time?.Split('-');
+                if (splitted?.Length == 3)
                 {
                     try
                     {

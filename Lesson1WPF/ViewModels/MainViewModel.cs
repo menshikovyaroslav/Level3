@@ -123,10 +123,10 @@ namespace WpfApp1.ViewModels
             SaveServerCommand = new Command(SaveServerCommand_Execute, SaveServerCommand_CanExecute);
             SaveSenderCommand = new Command(SaveSenderCommand_Execute, SaveSenderCommand_CanExecute);
 
-            Servers = new ObservableCollection<Server>(TestData.Servers);
-            Senders = new ObservableCollection<Sender>(TestData.Senders);
-            Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
-            Messages = new ObservableCollection<Message>(TestData.Messages);
+            Servers = new ObservableCollection<Server>(_mailSenderDb.Servers);
+            Senders = new ObservableCollection<Sender>(_mailSenderDb.Senders);
+            Recipients = new ObservableCollection<Recipient>(_mailSenderDb.Recipients);
+            Messages = new ObservableCollection<Message>(_mailSenderDb.Messages);
 
             LoadTestDataInDb();
 

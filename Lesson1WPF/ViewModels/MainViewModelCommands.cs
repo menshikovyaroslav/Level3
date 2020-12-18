@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,9 @@ namespace WpfApp1.ViewModels
 
         public void SaveServerCommand_Execute()
         {
+            _mailSenderDb.Servers.Update(SelectedServer);
+            _mailSenderDb.SaveChanges();
+
             var activeWindow = App.Current.Windows.OfType<ServerWindow>().SingleOrDefault();
             activeWindow?.Close();
         }
@@ -54,12 +58,11 @@ namespace WpfApp1.ViewModels
             var random = new Random();
 
             var server = new Server() { Address = "server555.ru", Port = 5555, IsSSL = true };
-            Servers.Add(server);
 
             _mailSenderDb.Servers.Add(server);
             _mailSenderDb.SaveChanges();
 
-          //  _db.AddServer(server);
+            if (server.Id > 0) Servers.Add(server);
         }
 
         public bool AddServerCommand_CanExecute()
@@ -71,8 +74,6 @@ namespace WpfApp1.ViewModels
         {
             var serverWindow = new ServerWindow();
             serverWindow.ShowDialog();
-
-            _db.EditServer(SelectedServer);
         }
 
         public bool EditServerCommand_CanExecute()
@@ -83,7 +84,12 @@ namespace WpfApp1.ViewModels
 
         public void DelServerCommand_Execute()
         {
+            _mailSenderDb.Entry(SelectedServer).State = EntityState.Deleted;
+            _mailSenderDb.Servers.Remove(SelectedServer);
+            _mailSenderDb.SaveChanges();
+
             Servers.Remove(SelectedServer);
+
             SelectedServer = Servers.FirstOrDefault();
         }
 
