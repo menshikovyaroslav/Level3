@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using report.MailDbDataSetTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,24 @@ namespace report
         public MainWindow()
         {
             InitializeComponent();
+
+            ReportViewer.Load += ReportViewerOnLoad;
         }
+
+        private void ReportViewerOnLoad(object sender, EventArgs eventArgs)
+        {
+            ReportDataSource reportDataSource = new ReportDataSource();
+            MailDbDataSet dataset = new MailDbDataSet();
+            dataset.BeginInit();
+            reportDataSource.Name = "RecipientsDataSet";
+            reportDataSource.Value = dataset.Recipients;
+            ReportViewer.LocalReport.DataSources.Add(reportDataSource);
+            ReportViewer.LocalReport.ReportPath = "../../Report1.rdlc";
+            dataset.EndInit();
+            RecipientsTableAdapter recipientsTableAdapter = new RecipientsTableAdapter { ClearBeforeFill = true };
+            recipientsTableAdapter.Fill(dataset.Recipients);
+            ReportViewer.RefreshReport();
+        }
+
     }
 }

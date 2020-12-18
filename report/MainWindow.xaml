@@ -14,7 +14,7 @@
             </TabItem>
             <TabItem Header="Отчеты">
                 <WindowsFormsHost>
-                    <winForms:ReportViewer />
+                    <winForms:ReportViewer x:Name="ReportViewer"  />
                 </WindowsFormsHost>
             </TabItem>
         </TabControl>

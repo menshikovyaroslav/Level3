@@ -26,21 +26,21 @@
         <elementListCompartment Id="78bc859d-63f5-41ee-8ff9-c93f6c3453f5" absoluteBounds="0.765, 7.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 2.06814697265625); (8.375 : 2.06814697265625); (8.375 : 3.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.06814697265625); (8.375 : 2.06814697265625); (8.375 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EMailsDataContext/Recipients/Recipients_Messages" />
       <nodes>
         <classShapeMoniker Id="3104b92b-b188-4328-8d08-2eca8950d095" />
         <classShapeMoniker Id="3b6ba501-c352-4090-89a8-9fbdb862dd58" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 5.28929768880208); (7.375 : 5.28929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 5.28929768880208); (7.375 : 5.28929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EMailsDataContext/Senders/Senders_Messages" />
       <nodes>
         <classShapeMoniker Id="17a38510-2254-4a46-b6d1-ab4417eafaba" />
         <classShapeMoniker Id="3b6ba501-c352-4090-89a8-9fbdb862dd58" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 7.53929768880208); (8.375 : 7.53929768880208); (8.375 : 6.22280110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 7.53929768880208); (8.375 : 7.53929768880208); (8.375 : 6.22280110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/EMailsDataContext/Servers/Servers_Messages" />
       <nodes>
         <classShapeMoniker Id="c42966a4-46e6-4d05-b29e-cce9a9ce56c3" />
