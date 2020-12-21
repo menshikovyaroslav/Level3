@@ -8,15 +8,17 @@ using System.Threading.Tasks;
 
 namespace Support
 {
+    [Obsolete]
     public class Mail
     {
-        private const string Something = "something value";
+        private string Description { get; set; }
         public string Server { get; set; }
         public int Port { get; set; }
         public bool IsSSL { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 
+        [Obsolete]
         public void SendMail(string sender, string recipient, string subject, string body)
         {
             try
