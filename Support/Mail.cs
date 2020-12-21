@@ -10,6 +10,7 @@ namespace Support
 {
     public class Mail
     {
+        private const string Something = "something value";
         public string Server { get; set; }
         public int Port { get; set; }
         public bool IsSSL { get; set; }
@@ -40,5 +41,23 @@ namespace Support
             {
             }
         }
+
+        public Mail(string text)
+        {
+
+        }
+
+        public Mail(string server, int port)
+        {
+            Description = "standard";
+            Server = server;
+            Port = port;
+        }
+
+        public Mail()
+        {
+
+        }
+
     }
 }

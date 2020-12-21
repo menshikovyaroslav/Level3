@@ -61,6 +61,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ef-test", "ef-test\ef-test.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "report", "report\report.csproj", "{2340D4A8-FA37-4D4B-860C-5029719B6F99}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Reflection", "Reflection", "{6B3A2D60-645B-4751-9168-479DB1E5F7D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp14", "ConsoleApp14\ConsoleApp14.csproj", "{B8AF52E1-AEE2-4222-AB9B-0E5300BCE188}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +171,10 @@ Global
 		{2340D4A8-FA37-4D4B-860C-5029719B6F99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2340D4A8-FA37-4D4B-860C-5029719B6F99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2340D4A8-FA37-4D4B-860C-5029719B6F99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AF52E1-AEE2-4222-AB9B-0E5300BCE188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AF52E1-AEE2-4222-AB9B-0E5300BCE188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AF52E1-AEE2-4222-AB9B-0E5300BCE188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AF52E1-AEE2-4222-AB9B-0E5300BCE188}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -192,6 +200,7 @@ Global
 		{F165D6C7-9491-416E-B386-58459D7535D2} = {49A6FC24-8C39-4179-8696-E3B12BF1B997}
 		{2D50D2E3-699B-4450-ACD4-DDB486D4AEBC} = {97202A04-8CE4-4976-8E80-0A666737F17F}
 		{2340D4A8-FA37-4D4B-860C-5029719B6F99} = {97202A04-8CE4-4976-8E80-0A666737F17F}
+		{B8AF52E1-AEE2-4222-AB9B-0E5300BCE188} = {6B3A2D60-645B-4751-9168-479DB1E5F7D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DAA779C8-9A37-4D55-827B-8255DE1D3BCC}
